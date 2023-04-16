@@ -2,32 +2,66 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background-color: whitesmoke;
+}
+
+header {
+  text-align: center;
+
+  h1 {
+    margin: 0.8rem;
+    font-size: 4rem;
+    color: #0c181c;
+  }
 }
 
 .cards-container {
+  padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
   text-align: center;
 
+  .loader {
+    width: 74px;
+    height: 74px;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
   div {
-    background-color: antiquewhite;
-    padding: 0.5rem;
+    background-color: #0c181c;
+    padding: 2rem;
+    border-radius: 0.4rem;
 
     figure {
       margin: 0;
-      
+
       img {
         width: 200px;
         height: 200px;
       }
 
       figcaption {
-        font-size: 1.2rem;
+        margin: 0.8rem 0;
+        font-size: 1.5rem;
         font-weight: bold;
         text-transform: capitalize;
         letter-spacing: 0.1rem;
+        color: whitesmoke;
       }
     }
   }
+}
+
+.occult {
+  display: none;
+}
+
+footer {
+  text-align: center;
 }
