@@ -25,7 +25,6 @@ function showPokemonList() {
       getPokemonInfo(pokemonList.results[i].name).then((pokemonInfo) => {
         // console.log(pokemonInfo);
         createPokemonCard(pokemonList, pokemonInfo, i);
-        // mostrar stats cuando se de vuelta la card
       });
     }
   });
@@ -35,22 +34,41 @@ function createPokemonCard(pokemonList, pokemonInfo, index) {
   occultLoader();
   showBodyElements();
   const pokemonName = pokemonList.results[index].name;
+  const pokemonCardContainer = document.createElement("div");
   const pokemonCard = document.createElement("div");
+  const frontCard = document.createElement("div");
+  const backCard = document.createElement("div");
   const pokemonImageContainer = document.createElement("figure");
   const pokemonCardImage = document.createElement("img");
   const pokemonCardName = document.createElement("figcaption");
 
+  pokemonCardName.textContent = pokemonName;
+  backCard.textContent =
+    "Hellouda asdasrf sadfafasfa fafaf a adashdfioahrfioash ifoasuodihao idhuaoihdoiahsodhoaidh as dasd asdasdadasdasda";
   pokemonCardImage.setAttribute(
     "src",
     pokemonInfo.sprites.other["official-artwork"].front_default
   );
   pokemonCardImage.setAttribute("alt", pokemonName);
-  pokemonCardName.textContent = pokemonName;
+  pokemonCardContainer.setAttribute("class", "pokemon-card-container");
   pokemonCard.setAttribute("class", "pokemon-card");
+  frontCard.setAttribute("class", "front-card");
+  backCard.setAttribute("class", "back-card");
 
   pokemonImageContainer.append(pokemonCardImage, pokemonCardName);
-  pokemonCard.appendChild(pokemonImageContainer);
-  $cardsContainer.appendChild(pokemonCard);
+  frontCard.appendChild(pokemonImageContainer);
+  pokemonCard.appendChild(frontCard);
+  pokemonCard.appendChild(backCard);
+  pokemonCardContainer.appendChild(pokemonCard);
+  $cardsContainer.appendChild(pokemonCardContainer);
+
+  rotateCard(pokemonCardContainer, pokemonCard);
+}
+
+function rotateCard(container, card) {
+  container.onclick = () => {
+    card.classList.toggle("rotate");
+  };
 }
 
 function showLoader() {
@@ -74,7 +92,7 @@ function occultBodyElements() {
 }
 
 function removePokemonCards() {
-  document.querySelectorAll(".pokemon-card").forEach((card) => {
+  document.querySelectorAll(".pokemon-card-container").forEach((card) => {
     card.remove();
   });
 }
