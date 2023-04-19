@@ -51,6 +51,10 @@ header {
       transform-style: preserve-3d;
 
       .front-card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
         figure {
           margin: 0;
 
@@ -79,18 +83,59 @@ header {
         backface-visibility: hidden;
       }
 
-      .front-card {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
       .back-card {
-        display: flex;
-        align-items: center;
-        justify-content: center;
         transform: rotateY(180deg);
         color: whitesmoke;
+        text-transform: capitalize;
+        letter-spacing: 0.1rem;
+
+        .pokemon-name {
+          font-size: 1.5rem;
+          font-weight: bolder;
+        }
+
+        .stat-container {
+          text-align: start;
+          padding: 0 2rem;
+
+          span {
+            margin: 0 0.4rem;
+            font-weight: 700;
+            background-color: rgb(220, 220, 220);
+            padding: 0.1rem 0.3rem;
+            color: #0c181c;
+            letter-spacing: 0.1rem;
+          }
+
+          .stat-bar {
+            width: 100%;
+            height: 10px;
+            background-color: rgb(220, 220, 220);
+            border-radius: 1rem;
+
+            div {
+              height: 100%;
+              border-radius: inherit;
+            }
+
+            .hp-bar {
+              background-color: #47af22;
+              width: 70%;
+            }
+
+            .attack-bar {
+              background-color: #f50400;
+            }
+
+            .defense-bar {
+              background-color: #00b2ff;
+            }
+
+            .speed-bar {
+              background-color: #d3d316;
+            }
+          }
+        }
       }
     }
   }

@@ -76,7 +76,40 @@ function createBackCard(pokemonCard, pokemonInfo) {
   backCard.setAttribute("class", "back-card");
   backCard.appendChild(pokemonCardName);
 
+  createStatBar("hp", pokemonInfo, backCard);
+  createStatBar("attack", pokemonInfo, backCard);
+  createStatBar("defense", pokemonInfo, backCard);
+  createStatBar("speed", pokemonInfo, backCard);
+
   pokemonCard.appendChild(backCard);
+}
+
+function createStatBar(stat, pokemonInfo, backCard) {
+  const statContainer = document.createElement("div");
+  const statBar = document.createElement("div");
+  const selectedStat = document.createElement("div");
+  const textStatContainer = document.createElement("p");
+  const numberStat = document.createElement("span");
+
+  const pokemonStats = {
+    hp: pokemonInfo.stats[0].base_stat,
+    defense: pokemonInfo.stats[1].base_stat,
+    attack: pokemonInfo.stats[2].base_stat,
+    speed: pokemonInfo.stats[5].base_stat,
+  };
+
+  textStatContainer.textContent = stat;
+  numberStat.textContent = pokemonStats[stat];
+
+  statContainer.setAttribute("class", "stat-container");
+  statBar.setAttribute("class", "stat-bar");
+  selectedStat.setAttribute("class", `${stat}-bar`);
+
+  textStatContainer.appendChild(numberStat);
+  statBar.appendChild(selectedStat);
+  statContainer.appendChild(textStatContainer, statBar);
+  statContainer.appendChild(statBar);
+  backCard.appendChild(statContainer);
 }
 
 function rotateCard(container, card) {
