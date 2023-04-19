@@ -24,45 +24,59 @@ function showPokemonList() {
     for (let i = 0; i < pokemonList.results.length; i++) {
       getPokemonInfo(pokemonList.results[i].name).then((pokemonInfo) => {
         // console.log(pokemonInfo);
-        createPokemonCard(pokemonList, pokemonInfo, i);
+        createPokemonCard(pokemonInfo);
       });
     }
   });
 }
 
-function createPokemonCard(pokemonList, pokemonInfo, index) {
+function createPokemonCard(pokemonInfo) {
   occultLoader();
   showBodyElements();
-  const pokemonName = pokemonList.results[index].name;
   const pokemonCardContainer = document.createElement("div");
   const pokemonCard = document.createElement("div");
+  pokemonCardContainer.setAttribute("class", "pokemon-card-container");
+  pokemonCard.setAttribute("class", "pokemon-card");
+
+  createFrontCard(pokemonCard, pokemonInfo);
+  createBackCard(pokemonCard, pokemonInfo);
+
+  pokemonCardContainer.appendChild(pokemonCard);
+  $cardsContainer.appendChild(pokemonCardContainer);
+
+  rotateCard(pokemonCardContainer, pokemonCard);
+}
+
+function createFrontCard(pokemonCard, pokemonInfo) {
   const frontCard = document.createElement("div");
-  const backCard = document.createElement("div");
   const pokemonImageContainer = document.createElement("figure");
   const pokemonCardImage = document.createElement("img");
   const pokemonCardName = document.createElement("figcaption");
+  const pokemonName = pokemonInfo.name;
 
   pokemonCardName.textContent = pokemonName;
-  backCard.textContent =
-    "Hellouda asdasrf sadfafasfa fafaf a adashdfioahrfioash ifoasuodihao idhuaoihdoiahsodhoaidh as dasd asdasdadasdasda";
   pokemonCardImage.setAttribute(
     "src",
     pokemonInfo.sprites.other["official-artwork"].front_default
   );
   pokemonCardImage.setAttribute("alt", pokemonName);
-  pokemonCardContainer.setAttribute("class", "pokemon-card-container");
-  pokemonCard.setAttribute("class", "pokemon-card");
   frontCard.setAttribute("class", "front-card");
-  backCard.setAttribute("class", "back-card");
 
   pokemonImageContainer.append(pokemonCardImage, pokemonCardName);
   frontCard.appendChild(pokemonImageContainer);
   pokemonCard.appendChild(frontCard);
-  pokemonCard.appendChild(backCard);
-  pokemonCardContainer.appendChild(pokemonCard);
-  $cardsContainer.appendChild(pokemonCardContainer);
+}
 
-  rotateCard(pokemonCardContainer, pokemonCard);
+function createBackCard(pokemonCard, pokemonInfo) {
+  const backCard = document.createElement("div");
+  const pokemonCardName = document.createElement("p");
+
+  pokemonCardName.textContent = pokemonInfo.name;
+  pokemonCardName.setAttribute("class", "pokemon-name");
+  backCard.setAttribute("class", "back-card");
+  backCard.appendChild(pokemonCardName);
+
+  pokemonCard.appendChild(backCard);
 }
 
 function rotateCard(container, card) {
