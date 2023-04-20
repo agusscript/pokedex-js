@@ -1,5 +1,4 @@
 const POKE_API = "https://pokeapi.co/api/v2";
-const $cardsContainer = document.querySelector(".cards-container");
 let offset = 0;
 let limit = 20;
 
@@ -18,12 +17,10 @@ function getPokemonInfo(pokemon) {
 function showPokemonList() {
   showLoader();
   occultBodyElements();
-  getPokemonList(offset, limit).then((pokemonList) => {
-    // console.log(pokemonList);
 
+  getPokemonList(offset, limit).then((pokemonList) => {
     for (let i = 0; i < pokemonList.results.length; i++) {
       getPokemonInfo(pokemonList.results[i].name).then((pokemonInfo) => {
-        // console.log(pokemonInfo);
         createPokemonCard(pokemonInfo);
       });
     }
@@ -33,6 +30,8 @@ function showPokemonList() {
 function createPokemonCard(pokemonInfo) {
   occultLoader();
   showBodyElements();
+
+  const $cardsContainer = document.querySelector(".cards-container");
   const pokemonCardContainer = document.createElement("div");
   const pokemonCard = document.createElement("div");
   pokemonCardContainer.setAttribute("class", "pokemon-card-container");
@@ -98,6 +97,7 @@ function createStatBar(stat, pokemonInfo, backCard) {
     speed: pokemonInfo.stats[5].base_stat,
   };
 
+  selectedStat.style.width = `${pokemonStats[stat]}%`;
   textStatContainer.textContent = stat;
   numberStat.textContent = pokemonStats[stat];
 
