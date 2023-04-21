@@ -1,6 +1,6 @@
 const POKE_API = "https://pokeapi.co/api/v2";
 let offset = 0;
-let limit = 18;
+let limit = 16;
 
 const typeColors = {
   grass: "linear-gradient(to right, #6fce40, #103000)",
@@ -169,14 +169,14 @@ function removePokemonCards() {
 
 document.querySelector(".next").addEventListener("click", () => {
   removePokemonCards();
-  offset += 18;
+  offset += 16;
   showPokemonList();
 });
 
 document.querySelector(".prev").addEventListener("click", () => {
   if (offset != 0) {
     removePokemonCards();
-    offset -= 18;
+    offset -= 16;
     showPokemonList();
   }
 });
