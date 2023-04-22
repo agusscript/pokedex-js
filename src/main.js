@@ -37,7 +37,7 @@ function getPokemonInfo(pokemon) {
 
 function showPokemonList() {
   showLoader();
-  occultBodyElements();
+  hideBodyElements();
 
   getPokemonList(offset, limit).then((pokemonList) => {
     for (let i = 0; i < pokemonList.results.length; i++) {
@@ -150,15 +150,15 @@ function occultLoader() {
 }
 
 function showBodyElements() {
-  document.querySelector("header").classList.remove("occult");
-  document.querySelector("main").classList.remove("occult");
-  document.querySelector("footer").classList.remove("occult");
+  document.querySelector("header").classList.remove("hide");
+  document.querySelector("main").classList.remove("hide");
+  document.querySelector("footer").classList.remove("hide");
 }
 
-function occultBodyElements() {
-  document.querySelector("header").classList.add("occult");
-  document.querySelector("main").classList.add("occult");
-  document.querySelector("footer").classList.add("occult");
+function hideBodyElements() {
+  document.querySelector("header").classList.add("hide");
+  document.querySelector("main").classList.add("hide");
+  document.querySelector("footer").classList.add("hide");
 }
 
 function removePokemonCards() {
