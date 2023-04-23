@@ -9,6 +9,8 @@ describe("PokeDex tests", () => {
     cy.get(".loader").should("be.visible");
     cy.get("header").find("h1").contains("PokeDex");
     cy.get("main").should("be.visible");
+    cy.get(".cards-container").should("be.visible");
+    cy.get(".buttons-container").should("be.visible");
     cy.get("footer").should("be.visible");
   });
 
@@ -45,5 +47,15 @@ describe("PokeDex tests", () => {
     cy.get(".back-card").should("be.visible");
     cy.get(".pokemon-type").should("have.length", cardsNum);
     cy.get(".stat-container").should("have.length", cardsNum * 4);
+  });
+
+  it("Check buttons", () => {
+    const prevButton = cy.get(".prev");
+    const nextButton = cy.get(".next");
+
+    prevButton.should("be.visible");
+    nextButton.should("be.visible");
+
+    nextButton.click();
   });
 });
