@@ -20,7 +20,7 @@ const typeColors = {
   poison: "linear-gradient(to right, #9141cb, #22003a)",
   fairy: "linear-gradient(to right, #f170f1, #470047)",
   dark: "linear-gradient(to right, #585448, #1a1401)",
-  flying: "linear-gradient(to right, #71aeff, #00224e)"
+  flying: "linear-gradient(to right, #71aeff, #00224e)",
 };
 
 function getPokemonList(offset, limit) {
@@ -79,7 +79,9 @@ function createFrontCard(pokemonCard, pokemonInfo) {
     "src",
     pokemonInfo.sprites.other["official-artwork"].front_default
   );
+  pokemonCardImage.setAttribute("class", "pokemon-img");
   pokemonCardImage.setAttribute("alt", pokemonName);
+  pokemonCardName.setAttribute("class", "pokemon-name");
   frontCard.setAttribute("class", "front-card");
 
   pokemonImageContainer.append(pokemonCardImage, pokemonCardName);
