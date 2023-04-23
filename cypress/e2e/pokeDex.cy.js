@@ -29,4 +29,21 @@ describe("PokeDex tests", () => {
       .should("be.visible")
       .should("have.length", cardsNum);
   });
+
+  it("Check rotate cards", () => {
+    const pokemonCard = cy.get(".pokemon-card");
+
+    pokemonCard.then((card) => {
+      card.each((i, card) => {
+        card.click();
+        pokemonCard.should("have.class", "rotate");
+      });
+    });
+  });
+
+  it("Check back card elements", () => {
+    cy.get(".back-card").should("be.visible");
+    cy.get(".pokemon-type").should("have.length", cardsNum);
+    cy.get(".stat-container").should("have.length", cardsNum * 4);
+  });
 });
