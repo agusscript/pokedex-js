@@ -1,6 +1,6 @@
 const POKE_API = "https://pokeapi.co/api/v2";
 let offset = 0;
-let limit = 16;
+const limit = 16;
 
 const typeColors = {
   grass: "linear-gradient(to right, #6fce40, #103000)",
@@ -20,7 +20,7 @@ const typeColors = {
   poison: "linear-gradient(to right, #9141cb, #22003a)",
   fairy: "linear-gradient(to right, #f170f1, #470047)",
   dark: "linear-gradient(to right, #585448, #1a1401)",
-  flying: "linear-gradient(to right, #71aeff, #00224e)",
+  flying: "linear-gradient(to right, #71aeff, #00224e)"
 };
 
 function getPokemonList(offset, limit) {
@@ -119,7 +119,7 @@ function createStatBar(stat, pokemonInfo, backCard) {
     hp: pokemonInfo.stats[0].base_stat,
     defense: pokemonInfo.stats[1].base_stat,
     attack: pokemonInfo.stats[2].base_stat,
-    speed: pokemonInfo.stats[5].base_stat,
+    speed: pokemonInfo.stats[5].base_stat
   };
 
   selectedStat.style.width = `${pokemonStats[stat]}%`;
@@ -176,7 +176,7 @@ document.querySelector(".next").addEventListener("click", () => {
 });
 
 document.querySelector(".prev").addEventListener("click", () => {
-  if (offset != 0) {
+  if (offset !== 0) {
     removePokemonCards();
     offset -= 16;
     showPokemonList();
