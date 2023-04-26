@@ -11,6 +11,15 @@
   "rules": {
     "quotes": ["error", "double"],
     "semi": ["error", "always"],
-    "space-before-function-paren": ["error", "never"]
+    "space-before-function-paren": ["error", "never"],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": true,
+        "classes": true,
+        "variables": true,
+        "allowNamedExports": false
+      }
+    ]
   }
 }
