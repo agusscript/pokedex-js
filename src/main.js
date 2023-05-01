@@ -1,4 +1,8 @@
-const POKE_API = "https://pokeapi.co/api/v2";
+import {
+  getPokemonList,
+  getPokemonInfo
+} from "./poke-api.js";
+
 let offset = 0;
 const limit = 16;
 
@@ -22,18 +26,6 @@ const typeColors = {
   dark: "linear-gradient(to right, #585448, #1a1401)",
   flying: "linear-gradient(to right, #71aeff, #00224e)"
 };
-
-function getPokemonList(offset, limit) {
-  return fetch(`${POKE_API}/pokemon/?offset=${offset}&limit=${limit}`).then(
-    (response) => response.json()
-  );
-}
-
-function getPokemonInfo(pokemon) {
-  return fetch(`${POKE_API}/pokemon/${pokemon}`).then((response) =>
-    response.json()
-  );
-}
 
 function showLoader() {
   document.querySelector(".loader").classList.remove("occult");
