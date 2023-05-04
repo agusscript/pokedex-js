@@ -120,8 +120,8 @@ function rotateCard(container, card) {
 }
 
 export function createPokemonCard(pokemonInfo) {
-  occultLoader();
   showBodyElements();
+  occultLoader();
 
   const $cardsContainer = document.querySelector(".cards-container");
   const pokemonCardContainer = document.createElement("div");

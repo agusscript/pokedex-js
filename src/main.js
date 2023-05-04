@@ -16,8 +16,8 @@ const limit = 16;
 let pageNumber = 1;
 
 function showPokemonList() {
-  hideBodyElements();
   showLoader();
+  hideBodyElements();
 
   getPokemonList(offset, limit).then((pokemonList) => {
     for (let i = 0; i < pokemonList.results.length; i++) {
