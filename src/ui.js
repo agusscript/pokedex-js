@@ -19,6 +19,10 @@ const typeColors = {
   flying: "linear-gradient(to right, #71aeff, #00224e)"
 };
 
+export function showPageNumber(number) {
+  document.querySelector(".page-number").textContent = number;
+}
+
 function createFrontCard(pokemonCard, pokemonInfo) {
   const frontCard = document.createElement("div");
   const pokemonImageContainer = document.createElement("figure");
@@ -135,6 +139,7 @@ export function createPokemonCard(pokemonInfo) {
 }
 
 export function removePokemonCards() {
+  showLoader();
   document.querySelectorAll(".pokemon-card-container").forEach((card) => {
     card.remove();
   });

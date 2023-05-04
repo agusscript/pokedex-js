@@ -181,8 +181,22 @@ header {
 }
 
 .buttons-container {
-  margin: 1.5rem 0 3rem 0;
-  text-align: center;
+  margin: 2.5rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.3rem;
+
+  .page-number-container {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background-color: #317a71;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bolder;
+    font-size: 1.4rem;
+  }
 
   button {
     margin: 0 0.2rem;
