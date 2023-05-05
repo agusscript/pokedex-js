@@ -1,5 +1,18 @@
 import { typeColors } from "./type-colors.js";
 
+export function manageLimit() {
+  const tabletView = matchMedia("(max-width: 760px)");
+  const mobileView = matchMedia("(max-width: 520px)");
+
+  if (mobileView.matches) {
+    return 8;
+  } else if (tabletView.matches) {
+    return 10;
+  } else {
+    return 16;
+  }
+};
+
 function createFrontCard(pokemonCard, pokemonInfo) {
   const frontCard = document.createElement("div");
   const pokemonImageContainer = document.createElement("figure");
