@@ -125,4 +125,3 @@ export function removePokemonCards() {
 export function showPageNumber(number) {
   document.querySelector(".page-number").textContent = number;
 }
-

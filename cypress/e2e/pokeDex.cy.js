@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /// <reference types="Cypress"/>
 
 describe("PokeDex tests", () => {
@@ -11,6 +12,7 @@ describe("PokeDex tests", () => {
     cy.get("main").should("be.visible");
     cy.get(".cards-container").should("be.visible");
     cy.get(".buttons-container").should("be.visible");
+    cy.get(".page-number-container").should("be.visible");
     cy.get("footer").should("be.visible");
   });
 
@@ -57,5 +59,9 @@ describe("PokeDex tests", () => {
     nextButton.should("be.visible");
 
     nextButton.click();
+  });
+
+  it("Verify that the page number is correct", () => {
+    cy.get(".page-number-container").contains("2");
   });
 });
