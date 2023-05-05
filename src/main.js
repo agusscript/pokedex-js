@@ -6,10 +6,10 @@ import {
 import {
   showLoader,
   hideBodyElements,
+  manageLimit,
   createPokemonCard,
   removePokemonCards,
-  showPageNumber,
-  manageLimit
+  showPageNumber
 } from "./ui.js";
 
 const limit = manageLimit();

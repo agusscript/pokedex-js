@@ -1,5 +1,18 @@
 import { typeColors } from "./type-colors.js";
 
+export function manageLimit() {
+  const tabletView = matchMedia("(max-width: 760px)");
+  const mobileView = matchMedia("(max-width: 520px)");
+
+  if (mobileView.matches) {
+    return 8;
+  } else if (tabletView.matches) {
+    return 10;
+  } else {
+    return 16;
+  }
+};
+
 function createFrontCard(pokemonCard, pokemonInfo) {
   const frontCard = document.createElement("div");
   const pokemonImageContainer = document.createElement("figure");
@@ -125,15 +138,3 @@ export function removePokemonCards() {
 export function showPageNumber(number) {
   document.querySelector(".page-number").textContent = number;
 }
-
-export function manageLimit() {
-  const mobileView = matchMedia("(max-width: 700px)");
-
-  if (mobileView.matches) {
-    console.log("match");
-    return 10;
-  } else {
-    console.log("no match");
-    return 16;
-  }
-};
