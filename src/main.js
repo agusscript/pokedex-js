@@ -11,14 +11,11 @@ import {
   showPageNumber
 } from "./ui.js";
 
-let offset = 0;
 const limit = 16;
+let offset = 0;
 let pageNumber = 1;
 
-function showPokemonList() {
-  hideBodyElements();
-  showLoader();
-
+export function showPokemonList() {
   getPokemonList(offset, limit).then((pokemonList) => {
     for (let i = 0; i < pokemonList.results.length; i++) {
       getPokemonInfo(pokemonList.results[i].name).then((pokemonInfo) => {
@@ -26,14 +23,16 @@ function showPokemonList() {
       });
     }
   });
-  showPageNumber(pageNumber);
 }
 
 document.querySelector(".next").addEventListener("click", () => {
   removePokemonCards();
   offset += 16;
   pageNumber += 1;
+  hideBodyElements();
+  showLoader();
   showPokemonList();
+  showPageNumber(pageNumber);
 });
 
 document.querySelector(".prev").addEventListener("click", () => {
@@ -41,8 +40,13 @@ document.querySelector(".prev").addEventListener("click", () => {
     removePokemonCards();
     offset -= 16;
     pageNumber -= 1;
+    hideBodyElements();
+    showLoader();
     showPokemonList();
+    showPageNumber(pageNumber);
   }
 });
 
+showLoader();
 showPokemonList();
+showPageNumber(pageNumber);
