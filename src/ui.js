@@ -125,3 +125,15 @@ export function removePokemonCards() {
 export function showPageNumber(number) {
   document.querySelector(".page-number").textContent = number;
 }
+
+export function manageLimit() {
+  const mobileView = matchMedia("(max-width: 700px)");
+
+  if (mobileView.matches) {
+    console.log("match");
+    return 10;
+  } else {
+    console.log("no match");
+    return 16;
+  }
+};

@@ -8,14 +8,15 @@ import {
   hideBodyElements,
   createPokemonCard,
   removePokemonCards,
-  showPageNumber
+  showPageNumber,
+  manageLimit
 } from "./ui.js";
 
-const limit = 16;
+const limit = manageLimit();
 let offset = 0;
 let pageNumber = 1;
 
-export function showPokemonList() {
+function showPokemonList() {
   getPokemonList(offset, limit).then((pokemonList) => {
     for (let i = 0; i < pokemonList.results.length; i++) {
       getPokemonInfo(pokemonList.results[i].name).then((pokemonInfo) => {
