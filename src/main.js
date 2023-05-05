@@ -47,7 +47,6 @@ document.querySelector(".prev").addEventListener("click", () => {
   }
 });
 
-hideBodyElements();
 showLoader();
 showPokemonList();
 showPageNumber(pageNumber);
