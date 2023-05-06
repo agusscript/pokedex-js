@@ -12,17 +12,25 @@
 
 <body>
   <img class="loader occult" src="images/loader.gif" alt="loader icon">
+
   <header class="hide">
     <h1>PokeDex</h1>
   </header>
+
   <main class="hide">
+
     <section class="explore-container">
-      <label for="search-pokemon">Search Pokemon</label>
-      <input type="search" id="search-pokemon">
-      <button class="search-btn">Search</button>
+      <div class="explore">
+        <button class="btn-search">
+          <img src="images/search-icon.svg" alt="search icon">
+        </button>
+        <input type="text" id="input-search" placeholder="Search pokemon...">
+      </div>
     </section>
+
     <section class="cards-container">
     </section>
+
     <section class="buttons-container">
       <button class="prev">Prev</button>
       <div class="page-number-container">
@@ -30,12 +38,15 @@
       </div>
       <button class="next">Next</button>
     </section>
+
   </main>
+
   <footer class="hide">
     <p>
       Coded by <a href="https://github.com/agusscript" target="_blank">Agustin Sanchez</a>
     </p>
   </footer>
+
   <script src="src/main.js" type="module"></script>
 </body>
 

@@ -31,7 +31,7 @@ async function showPokemonList() {
   }
 }
 
-document.querySelector(".search-btn").onclick = () => {
+document.querySelector(".btn-search").onclick = () => {
   findPokemon($searchInput.value);
   removePokemonCards();
   createPokemonCard($searchInput.value);

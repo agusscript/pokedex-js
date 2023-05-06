@@ -1,7 +1,7 @@
 import { getPokemonInfo } from "./poke-api.js";
 import { createPokemonCard } from "./ui.js";
 
-export const $searchInput = document.querySelector("#search-pokemon");
+export const $searchInput = document.querySelector("#input-search");
 
 export function findPokemon(input) {
   getPokemonInfo(input).then((pokemonInfo) => {
