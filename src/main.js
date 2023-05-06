@@ -12,6 +12,11 @@ import {
   showPageNumber,
 } from "./ui.js";
 
+import {
+  $searchInput,
+  findPokemon
+} from "./explorer.js";
+
 const limit = manageLimit();
 let offset = 0;
 let pageNumber = 1;
@@ -25,6 +30,12 @@ async function showPokemonList() {
     }).catch((e) => console.error(e));
   }
 }
+
+document.querySelector(".search-btn").onclick = () => {
+  findPokemon($searchInput.value);
+  removePokemonCards();
+  createPokemonCard($searchInput.value);
+};
 
 document.querySelector(".next").addEventListener("click", () => {
   removePokemonCards();
