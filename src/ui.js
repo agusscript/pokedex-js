@@ -5,9 +5,9 @@ export function manageLimit() {
   const mobileView = matchMedia("(max-width: 520px)");
 
   if (mobileView.matches) {
-    return 8;
-  } else if (tabletView.matches) {
     return 10;
+  } else if (tabletView.matches) {
+    return 12;
   } else {
     return 16;
   }
@@ -23,7 +23,7 @@ function createFrontCard(pokemonCard, pokemonInfo) {
   pokemonCardName.textContent = pokemonName;
   pokemonCardImage.setAttribute(
     "src",
-    pokemonInfo.sprites.other.dream_world.front_default
+    pokemonInfo.sprites.other["official-artwork"].front_default
   );
   pokemonCardImage.setAttribute("class", "pokemon-img");
   pokemonCardImage.setAttribute("alt", pokemonName);
