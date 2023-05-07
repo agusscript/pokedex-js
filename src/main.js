@@ -13,8 +13,7 @@ import {
 } from "./ui.js";
 
 import {
-  $searchInput,
-  findPokemon
+  manageSearchExplorer
 } from "./explorer.js";
 
 const limit = manageLimit();
@@ -31,11 +30,7 @@ async function showPokemonList() {
   }
 }
 
-document.querySelector(".btn-search").onclick = () => {
-  findPokemon($searchInput.value);
-  removePokemonCards();
-  createPokemonCard($searchInput.value);
-};
+manageSearchExplorer();
 
 document.querySelector(".next").addEventListener("click", () => {
   removePokemonCards();
