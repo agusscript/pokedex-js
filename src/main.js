@@ -9,22 +9,28 @@ import {
   manageLimit,
   createPokemonCard,
   removePokemonCards,
-  showPageNumber
+  showPageNumber,
 } from "./ui.js";
+
+import {
+  manageSearchExplorer
+} from "./explorer.js";
 
 const limit = manageLimit();
 let offset = 0;
 let pageNumber = 1;
 
-function showPokemonList() {
-  getPokemonList(offset, limit).then((pokemonList) => {
-    for (let i = 0; i < pokemonList.results.length; i++) {
-      getPokemonInfo(pokemonList.results[i].name).then((pokemonInfo) => {
-        createPokemonCard(pokemonInfo);
-      });
-    }
-  });
+async function showPokemonList() {
+  const pokemonList = await getPokemonList(offset, limit);
+
+  for (let i = 0; i < limit; i++) {
+    getPokemonInfo(pokemonList.results[i].name).then((pokemonInfo) => {
+      createPokemonCard(pokemonInfo);
+    }).catch((e) => console.error(e));
+  }
 }
+
+manageSearchExplorer();
 
 document.querySelector(".next").addEventListener("click", () => {
   removePokemonCards();
