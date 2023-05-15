@@ -27,7 +27,7 @@ Users should be able to:
 ## Links
 
 - Deploy [Live site](https://pokedex-js-lilac.vercel.app/)
-- API data from [exchangerate-host](https://pokeapi.co/)
+- API data from [Poke-Api](https://pokeapi.co/)
 
 ## Built with
 
@@ -53,7 +53,7 @@ Users should be able to:
 <img src="https://img.shields.io/badge/-Cypress-gray?style=flat-square&logo=Cypress&logoColor=white" height="30" alt="Cypress"/>
 </a>
 
-![](images/screenshots/pokedex-ui-tests.png)
+![](images/screenshots/pokedex-ui-test.png)
 
 ## Author
 
