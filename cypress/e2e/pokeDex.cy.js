@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /// <reference types="Cypress"/>
 
-describe("PokeDex tests", () => {
+describe("PokeDex page elements tests", () => {
   before(() => {
     cy.visit("index.html");
   });
@@ -10,6 +10,7 @@ describe("PokeDex tests", () => {
     cy.get(".loader").should("be.visible");
     cy.get("header").find("h1").contains("PokeDex");
     cy.get("main").should("be.visible");
+    cy.get(".explore-container").should("be.visible");
     cy.get(".cards-container").should("be.visible");
     cy.get(".buttons-container").should("be.visible");
     cy.get(".page-number-container").should("be.visible");

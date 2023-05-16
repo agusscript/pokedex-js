@@ -9,7 +9,7 @@ import {
   manageLimit,
   createPokemonCard,
   removePokemonCards,
-  showPageNumber,
+  showPageNumber
 } from "./ui.js";
 
 import {
