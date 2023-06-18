@@ -15,23 +15,22 @@ export function manageLimit() {
 
 function createFrontCard(pokemonCard, pokemonInfo) {
   const frontCard = document.createElement("div");
-  const pokemonImageContainer = document.createElement("figure");
-  const pokemonCardImage = document.createElement("img");
-  const pokemonCardName = document.createElement("figcaption");
-  const pokemonName = pokemonInfo.name;
+  const imageContainer = document.createElement("figure");
+  const image = document.createElement("img");
+  const name = document.createElement("figcaption");
 
-  pokemonCardName.textContent = pokemonName;
-  pokemonCardImage.setAttribute(
+  name.textContent = pokemonInfo.name;
+  image.setAttribute(
     "src",
     pokemonInfo.sprites.other["official-artwork"].front_default
   );
-  pokemonCardImage.setAttribute("class", "pokemon-img");
-  pokemonCardImage.setAttribute("alt", pokemonName);
-  pokemonCardName.setAttribute("class", "pokemon-name");
+  image.setAttribute("class", "pokemon-img");
+  image.setAttribute("alt", pokemonInfo.name);
+  name.setAttribute("class", "pokemon-name");
   frontCard.setAttribute("class", "front-card");
 
-  pokemonImageContainer.append(pokemonCardImage, pokemonCardName);
-  frontCard.appendChild(pokemonImageContainer);
+  imageContainer.append(image, name);
+  frontCard.appendChild(imageContainer);
   pokemonCard.appendChild(frontCard);
 }
 
@@ -59,9 +58,8 @@ function createStatBar(stat, pokemonInfo, backCard) {
 
   textStatContainer.appendChild(numberStat);
   statBar.appendChild(selectedStat);
-  statContainer.appendChild(textStatContainer, statBar);
-  statContainer.appendChild(statBar);
-  backCard.appendChild(statContainer);
+  statContainer.append(textStatContainer, statBar);
+  backCard.append(statContainer);
 }
 
 function createBackCard(pokemonCard, pokemonInfo) {
@@ -113,26 +111,27 @@ export function createPokemonCard(pokemonInfo) {
   showBodyElements();
   hideLoader();
 
-  const $cardsContainer = document.querySelector(".cards-container");
+  const cardsContainer = document.querySelector(".cards-container");
   const pokemonCardContainer = document.createElement("div");
   const pokemonCard = document.createElement("div");
-  pokemonCardContainer.setAttribute("class", "pokemon-card-container");
-  pokemonCard.setAttribute("class", "pokemon-card");
+
+  pokemonCardContainer.classList.add("pokemon-card-container");
+  pokemonCard.classList.add("pokemon-card");
 
   createFrontCard(pokemonCard, pokemonInfo);
   createBackCard(pokemonCard, pokemonInfo);
 
   pokemonCardContainer.appendChild(pokemonCard);
-  $cardsContainer.appendChild(pokemonCardContainer);
+  cardsContainer.appendChild(pokemonCardContainer);
 
   rotateCard(pokemonCardContainer, pokemonCard);
 }
 
 export function removePokemonCards() {
-  showLoader();
-  document.querySelectorAll(".pokemon-card-container").forEach((card) => {
-    card.remove();
-  });
+  const pokemonCards = document.querySelectorAll(".pokemon-card-container");
+  for (let i = 0; i < pokemonCards.length; i++) {
+    pokemonCards[i].remove();
+  }
 }
 
 export function showPageNumber(number) {

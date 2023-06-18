@@ -26,25 +26,23 @@ async function displayPokemonList() {
   pokemonInfoList.forEach((pokemonInfo) => createPokemonCard(pokemonInfo));
 }
 
-manageSearchExplorer();
-
 document.querySelector(".next").addEventListener("click", () => {
+  showLoader();
   removePokemonCards();
   offset += 16;
   pageNumber += 1;
   hideBodyElements();
-  showLoader();
   displayPokemonList();
   showPageNumber(pageNumber);
 });
 
 document.querySelector(".prev").addEventListener("click", () => {
   if (offset !== 0) {
+    showLoader();
     removePokemonCards();
     offset -= 16;
     pageNumber -= 1;
     hideBodyElements();
-    showLoader();
     displayPokemonList();
     showPageNumber(pageNumber);
   }
@@ -53,3 +51,4 @@ document.querySelector(".prev").addEventListener("click", () => {
 showLoader();
 displayPokemonList();
 showPageNumber(pageNumber);
+manageSearchExplorer();
