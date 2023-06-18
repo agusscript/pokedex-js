@@ -11,7 +11,7 @@ export function manageLimit() {
   } else {
     return 16;
   }
-};
+}
 
 function createFrontCard(pokemonCard, pokemonInfo) {
   const frontCard = document.createElement("div");
@@ -46,7 +46,7 @@ function createStatBar(stat, pokemonInfo, backCard) {
     hp: pokemonInfo.stats[0].base_stat,
     defense: pokemonInfo.stats[1].base_stat,
     attack: pokemonInfo.stats[2].base_stat,
-    speed: pokemonInfo.stats[5].base_stat
+    speed: pokemonInfo.stats[5].base_stat,
   };
 
   selectedStat.style.width = `${pokemonStats[stat]}%`;
@@ -87,7 +87,7 @@ export function showLoader() {
   document.querySelector(".loader").classList.remove("occult");
 }
 
-function occultLoader() {
+function hideLoader() {
   document.querySelector(".loader").classList.add("occult");
 }
 
@@ -111,7 +111,7 @@ function rotateCard(container, card) {
 
 export function createPokemonCard(pokemonInfo) {
   showBodyElements();
-  occultLoader();
+  hideLoader();
 
   const $cardsContainer = document.querySelector(".cards-container");
   const pokemonCardContainer = document.createElement("div");

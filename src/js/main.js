@@ -1,7 +1,4 @@
-import {
-  getPokemonList,
-  getPokemonInfo
-} from "./poke-api.js";
+import { getPokemonList, getPokemonInfo } from "./poke-api.js";
 
 import {
   showLoader,
@@ -9,25 +6,24 @@ import {
   manageLimit,
   createPokemonCard,
   removePokemonCards,
-  showPageNumber
+  showPageNumber,
 } from "./ui.js";
 
-import {
-  manageSearchExplorer
-} from "./explorer.js";
+import { manageSearchExplorer } from "./explorer.js";
 
 const limit = manageLimit();
 let offset = 0;
 let pageNumber = 1;
 
-async function showPokemonList() {
+async function displayPokemonList() {
   const pokemonList = await getPokemonList(offset, limit);
 
-  for (let i = 0; i < limit; i++) {
-    getPokemonInfo(pokemonList.results[i].name).then((pokemonInfo) => {
-      createPokemonCard(pokemonInfo);
-    }).catch((e) => console.error(e));
-  }
+  const pokemonInfoPromises = pokemonList.results.map((pokemon) =>
+    getPokemonInfo(pokemon.name)
+  );
+  const pokemonInfoList = await Promise.all(pokemonInfoPromises);
+
+  pokemonInfoList.forEach((pokemonInfo) => createPokemonCard(pokemonInfo));
 }
 
 manageSearchExplorer();
@@ -38,7 +34,7 @@ document.querySelector(".next").addEventListener("click", () => {
   pageNumber += 1;
   hideBodyElements();
   showLoader();
-  showPokemonList();
+  displayPokemonList();
   showPageNumber(pageNumber);
 });
 
@@ -49,11 +45,11 @@ document.querySelector(".prev").addEventListener("click", () => {
     pageNumber -= 1;
     hideBodyElements();
     showLoader();
-    showPokemonList();
+    displayPokemonList();
     showPageNumber(pageNumber);
   }
 });
 
 showLoader();
-showPokemonList();
+displayPokemonList();
 showPageNumber(pageNumber);

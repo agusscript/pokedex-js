@@ -1,13 +1,11 @@
 const POKE_API = "https://pokeapi.co/api/v2";
 
 export function getPokemonList(offset, limit) {
-  return fetch(`${POKE_API}/pokemon/?offset=${offset}&limit=${limit}`).then(
-    (response) => response.json()
-  );
+  const apiUrl = `${POKE_API}/pokemon/?offset=${offset}&limit=${limit}`;
+  return fetch(apiUrl).then((response) => response.json());
 }
 
 export function getPokemonInfo(pokemon) {
-  return fetch(`${POKE_API}/pokemon/${pokemon}`).then((response) =>
-    response.json()
-  );
+  const apiPokemon = `${POKE_API}/pokemon/${pokemon}`;
+  return fetch(apiPokemon).then((response) => response.json());
 }

@@ -1,16 +1,16 @@
 import { getPokemonInfo } from "./poke-api.js";
 
-import {
-  createPokemonCard,
-  removePokemonCards
-} from "./ui.js";
+import { createPokemonCard, removePokemonCards } from "./ui.js";
 
 const $searchInput = document.querySelector("#input-search");
 
-function findPokemon(input) {
-  getPokemonInfo(input).then((pokemonInfo) => {
+async function findPokemon(pokemonName) {
+  try {
+    const pokemonInfo = await getPokemonInfo(pokemonName);
     createPokemonCard(pokemonInfo);
-  }).catch((e) => console.error(e));
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export function manageSearchExplorer() {
