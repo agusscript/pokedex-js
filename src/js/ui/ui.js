@@ -1,31 +1,15 @@
 import { typeColors } from "./type-colors.js";
 
-export function manageLimit() {
-  const tabletView = matchMedia("(max-width: 760px)");
-  const mobileView = matchMedia("(max-width: 520px)");
-
-  if (mobileView.matches) {
-    return 10;
-  } else if (tabletView.matches) {
-    return 12;
-  } else {
-    return 16;
-  }
-}
-
-function createFrontCard(pokemonCard, pokemonInfo) {
+function createFrontCard(pokemonCard, pokemon) {
   const frontCard = document.createElement("div");
   const imageContainer = document.createElement("figure");
   const image = document.createElement("img");
   const name = document.createElement("figcaption");
 
-  name.textContent = pokemonInfo.name;
-  image.setAttribute(
-    "src",
-    pokemonInfo.sprites.other["official-artwork"].front_default
-  );
+  name.textContent = pokemon.name;
+  image.setAttribute("src", pokemon.image);
   image.setAttribute("class", "pokemon-img");
-  image.setAttribute("alt", pokemonInfo.name);
+  image.setAttribute("alt", pokemon.name);
   name.setAttribute("class", "pokemon-name");
   frontCard.setAttribute("class", "front-card");
 
@@ -34,23 +18,16 @@ function createFrontCard(pokemonCard, pokemonInfo) {
   pokemonCard.appendChild(frontCard);
 }
 
-function createStatBar(stat, pokemonInfo, backCard) {
+function createStatBar(stat, pokemon, backCard) {
   const statContainer = document.createElement("div");
   const statBar = document.createElement("div");
   const selectedStat = document.createElement("div");
   const textStatContainer = document.createElement("p");
   const numberStat = document.createElement("span");
 
-  const pokemonStats = {
-    hp: pokemonInfo.stats[0].base_stat,
-    defense: pokemonInfo.stats[1].base_stat,
-    attack: pokemonInfo.stats[2].base_stat,
-    speed: pokemonInfo.stats[5].base_stat,
-  };
-
-  selectedStat.style.width = `${pokemonStats[stat]}%`;
+  selectedStat.style.width = `${pokemon[stat]}%`;
   textStatContainer.textContent = stat;
-  numberStat.textContent = pokemonStats[stat];
+  numberStat.textContent = pokemon[stat];
 
   statContainer.setAttribute("class", "stat-container");
   statBar.setAttribute("class", "stat-bar");
@@ -62,21 +39,20 @@ function createStatBar(stat, pokemonInfo, backCard) {
   backCard.append(statContainer);
 }
 
-function createBackCard(pokemonCard, pokemonInfo) {
+function createBackCard(pokemonCard, pokemon) {
   const backCard = document.createElement("div");
   const pokemonTypeText = document.createElement("p");
-  const pokemonType = pokemonInfo.types[0].type.name;
 
-  pokemonTypeText.textContent = pokemonType;
-  pokemonTypeText.style.background = typeColors[pokemonType];
+  pokemonTypeText.textContent = pokemon.type;
+  pokemonTypeText.style.background = typeColors[pokemon.type];
   backCard.setAttribute("class", "back-card");
   pokemonTypeText.setAttribute("class", "pokemon-type");
   backCard.appendChild(pokemonTypeText);
 
-  createStatBar("hp", pokemonInfo, backCard);
-  createStatBar("attack", pokemonInfo, backCard);
-  createStatBar("defense", pokemonInfo, backCard);
-  createStatBar("speed", pokemonInfo, backCard);
+  createStatBar("hp", pokemon, backCard);
+  createStatBar("attack", pokemon, backCard);
+  createStatBar("defense", pokemon, backCard);
+  createStatBar("speed", pokemon, backCard);
 
   pokemonCard.appendChild(backCard);
 }
@@ -107,7 +83,7 @@ function rotateCard(container, card) {
   };
 }
 
-export function createPokemonCard(pokemonInfo) {
+export function renderPokemonCard(pokemon) {
   showBodyElements();
   hideLoader();
 
@@ -118,8 +94,8 @@ export function createPokemonCard(pokemonInfo) {
   pokemonCardContainer.classList.add("pokemon-card-container");
   pokemonCard.classList.add("pokemon-card");
 
-  createFrontCard(pokemonCard, pokemonInfo);
-  createBackCard(pokemonCard, pokemonInfo);
+  createFrontCard(pokemonCard, pokemon);
+  createBackCard(pokemonCard, pokemon);
 
   pokemonCardContainer.appendChild(pokemonCard);
   cardsContainer.appendChild(pokemonCardContainer);
