@@ -16,5 +16,5 @@ export const typeColors = {
   poison: "linear-gradient(to right, #9141cb, #22003a)",
   fairy: "linear-gradient(to right, #f170f1, #470047)",
   dark: "linear-gradient(to right, #585448, #1a1401)",
-  flying: "linear-gradient(to right, #71aeff, #00224e)"
+  flying: "linear-gradient(to right, #71aeff, #00224e)",
 };

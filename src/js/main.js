@@ -1,4 +1,4 @@
-import { getPokemonList, getPokemonInfo } from "./poke-api.js";
+import { getPokemonList, getPokemonInfo } from "./api/poke-api.js";
 
 import {
   showLoader,
@@ -7,9 +7,9 @@ import {
   createPokemonCard,
   removePokemonCards,
   showPageNumber,
-} from "./ui.js";
+} from "./ui/ui.js";
 
-import { manageSearchExplorer } from "./explorer.js";
+import { manageSearchExplorer } from "./ui/explorer.js";
 
 const limit = manageLimit();
 let offset = 0;

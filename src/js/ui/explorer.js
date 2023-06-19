@@ -1,4 +1,4 @@
-import { getPokemonInfo } from "./poke-api.js";
+import { getPokemonInfo } from "../api/poke-api.js";
 
 import { createPokemonCard, removePokemonCards } from "./ui.js";
 
