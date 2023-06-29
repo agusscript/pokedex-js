@@ -1,53 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/pokeball.png" />
+    <title>PokeDex</title>
+    <link rel="stylesheet" href="src/styles/main.scss" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/png" href="images/pokeball.png">
-  <title>PokeDex</title>
-  <link rel="stylesheet" href="src/styles/main.css">
-</head>
+  <body>
+    <img class="loader occult" src="assets/images/loader.gif" alt="loader icon" />
 
-<body>
-  <img class="loader occult" src="images/loader.gif" alt="loader icon">
+    <header class="hide">
+      <h1>PokeDex</h1>
+    </header>
 
-  <header class="hide">
-    <h1>PokeDex</h1>
-  </header>
+    <main class="hide">
+      <section class="explore-container">
+        <div class="explore">
+          <button class="btn-search">
+            <img src="assets/images/search-icon.svg" alt="search icon" />
+          </button>
+          <input type="text" id="input-search" placeholder="Search pokemon..." />
+        </div>
+      </section>
 
-  <main class="hide">
+      <section class="cards-container"></section>
 
-    <section class="explore-container">
-      <div class="explore">
-        <button class="btn-search">
-          <img src="images/search-icon.svg" alt="search icon">
-        </button>
-        <input type="text" id="input-search" placeholder="Search pokemon...">
-      </div>
-    </section>
+      <section class="buttons-container">
+        <button class="prev">Prev</button>
+        <div class="page-number-container">
+          <span class="page-number"></span>
+        </div>
+        <button class="next">Next</button>
+      </section>
+    </main>
 
-    <section class="cards-container">
-    </section>
+    <footer class="hide">
+      <p>
+        Coded by
+        <a href="https://github.com/agusscript" target="_blank">Agustin Sanchez</a>
+      </p>
+    </footer>
 
-    <section class="buttons-container">
-      <button class="prev">Prev</button>
-      <div class="page-number-container">
-        <span class="page-number"></span>
-      </div>
-      <button class="next">Next</button>
-    </section>
-
-  </main>
-
-  <footer class="hide">
-    <p>
-      Coded by <a href="https://github.com/agusscript" target="_blank">Agustin Sanchez</a>
-    </p>
-  </footer>
-
-  <script src="src/js/main.js" type="module"></script>
-</body>
-
+    <script type="module" src="src/ts/index.ts"></script>
+  </body>
 </html>

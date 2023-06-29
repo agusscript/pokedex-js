@@ -1,4 +1,4 @@
-import { getPokemonList, getPokemonInfo } from "./api/poke-api.js";
+import { getPokemonList, getPokemonInfo } from "./api/pokeApi.js";
 import { mapPokemon } from "./mappers/mappers.js";
 import {
   renderPokemonCard,
@@ -6,7 +6,7 @@ import {
   showPageNumber,
   showLoader,
   hideBodyElements,
-} from "./ui/ui.js";
+} from "./ui/main.js";
 
 const limit = 16;
 let offset = 0;
