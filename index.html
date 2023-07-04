@@ -4,28 +4,19 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="images/pokeball.png" />
+    <link rel="icon" type="image/png" href="assets/images/pokeball.png" />
     <title>PokeDex</title>
     <link rel="stylesheet" href="src/styles/main.scss" />
   </head>
 
   <body>
-    <img class="loader occult" src="assets/images/loader.gif" alt="loader icon" />
+    <img class="loader hidden" src="assets/images/loader.gif" alt="loader icon" />
 
-    <header class="hide">
+    <header class="hidden">
       <h1>PokeDex</h1>
     </header>
 
-    <main class="hide">
-      <section class="explore-container">
-        <div class="explore">
-          <button class="btn-search">
-            <img src="assets/images/search-icon.svg" alt="search icon" />
-          </button>
-          <input type="text" id="input-search" placeholder="Search pokemon..." />
-        </div>
-      </section>
-
+    <main class="hidden">
       <section class="cards-container"></section>
 
       <section class="buttons-container">
@@ -37,7 +28,7 @@
       </section>
     </main>
 
-    <footer class="hide">
+    <footer class="hidden">
       <p>
         Coded by
         <a href="https://github.com/agusscript" target="_blank">Agustin Sanchez</a>

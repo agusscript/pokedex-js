@@ -1,75 +1,79 @@
-import { getPokemonList, getPokemonInfo } from "./api/pokeApi.js";
-import { mapPokemon } from "./mappers/mappers.js";
+import { fetchPokemonList, fetchPokemonInfo } from "./api/pokeApi.ts";
+import { mapPokemon, mapPokemonList } from "./mappers/mappers.ts";
 import {
-  renderPokemonCard,
+  renderCard,
   removePokemonCards,
   showPageNumber,
-  showLoader,
   hideBodyElements,
-} from "./ui/main.js";
+  showElement,
+  loader,
+} from "./ui/main.ts";
 
 const limit = 16;
 let offset = 0;
 let pageNumber = 1;
 
-async function displayPokemonList() {
-  const pokemonList = await getPokemonList(offset, limit);
+async function displayPokemonList(): Promise<void> {
+  const pokemonList = await fetchPokemonList(offset, limit);
 
-  const pokemonInfoPromises = pokemonList.results.map((pokemon) =>
-    getPokemonInfo(pokemon.name)
-  );
+  const mappedPokemon = mapPokemonList(pokemonList);
+  renderPokemonList(mappedPokemon);
+}
 
-  const pokemonInfoList = await Promise.all(pokemonInfoPromises);
+function renderPokemonList(pokemonList: any) {
+  const listLength: number = pokemonList.name.length;
+  for (let i = 0; i < listLength; i++) {
+    renderCard(pokemonList, i, addCardClickListener);
+  }
+}
 
-  pokemonInfoList.forEach((pokemonInfo) => {
-    const pokemon = mapPokemon(pokemonInfo);
-    renderPokemonCard(pokemon);
+export async function displayPokemonInfo(pokemon: string): Promise<void> {
+  fetchPokemonInfo(pokemon).then((pokemon) => {
+    const mappedPokemon = mapPokemon(pokemon);
+    console.log(mappedPokemon);
   });
 }
 
-async function findPokemon(pokemonName) {
-  const pokemonInfo = await getPokemonInfo(pokemonName);
-  const pokemon = mapPokemon(pokemonInfo);
-  renderPokemonCard(pokemon);
+export function addCardClickListener(cardElement: HTMLDivElement) {
+  const handleClick = () => {
+    const pokemonName: string = cardElement.dataset.name!;
+    displayPokemonInfo(pokemonName);
+  };
+  cardElement.addEventListener("click", handleClick);
 }
 
-export function manageSearchExplorer() {
-  const $searchInput = document.querySelector("#input-search");
-  const $buttonSearch = document.querySelector(".btn-search");
-
-  $buttonSearch.onclick = () => {
-    if ($searchInput.value.length > 0) {
+function managePrevButton(): void {
+  const prevButton = <HTMLButtonElement>document.querySelector(".prev");
+  prevButton.onclick = () => {
+    if (offset !== 0) {
+      showElement(loader);
       removePokemonCards();
-      findPokemon($searchInput.value);
+      offset -= 16;
+      pageNumber -= 1;
+      hideBodyElements();
+      displayPokemonList();
+      showPageNumber(pageNumber);
     }
   };
 }
 
-document.querySelector(".next").onclick = () => {
-  showLoader();
-  removePokemonCards();
-  offset += 16;
-  pageNumber += 1;
-  hideBodyElements();
-  displayPokemonList();
-  showPageNumber(pageNumber);
-};
-
-document.querySelector(".prev").onclick = () => {
-  if (offset !== 0) {
-    showLoader();
+function manageNextButton(): void {
+  const nextButton = <HTMLButtonElement>document.querySelector(".next");
+  nextButton.onclick = () => {
+    showElement(loader);
     removePokemonCards();
-    offset -= 16;
-    pageNumber -= 1;
+    offset += 16;
+    pageNumber += 1;
     hideBodyElements();
     displayPokemonList();
     showPageNumber(pageNumber);
-  }
-};
+  };
+}
 
 export function initialize() {
-  showLoader();
+  showElement(loader);
   displayPokemonList();
+  manageNextButton();
+  managePrevButton();
   showPageNumber(pageNumber);
-  manageSearchExplorer();
 }
