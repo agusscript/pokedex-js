@@ -64,9 +64,12 @@ function createModal(pokemon: Pokemon): void {
   modalContent.setAttribute("class", "modal-content");
   closeButton.setAttribute("class", "close-btn");
   closeImage.setAttribute("class", "close-img");
-  closeImage.setAttribute("src", "assets/images/icon-close-menu.svg");
   name.setAttribute("class", "pokemon-name");
   type.setAttribute("class", "pokemon-type");
+  closeImage.setAttribute(
+    "src",
+    "https://raw.githubusercontent.com/agusscript/pokedex-js/a6cdaef0779210b9d0d7bdf99fc21a0c6ed57243/assets/images/icon-close-menu.svg"
+  );
 
   closeButton.appendChild(closeImage);
   modalContent.append(closeButton, name, type);

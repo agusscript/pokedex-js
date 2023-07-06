@@ -146,7 +146,7 @@ header {
     }
 
     .pokemon-name {
-      margin: 0.8rem 0;
+      margin: 0.7rem 0 1.3rem 0;
       font-size: 1.6rem;
       font-weight: bold;
       text-transform: capitalize;
@@ -158,7 +158,7 @@ header {
 
     .pokemon-type {
       font-size: 1.1rem;
-      margin: 0 0 1rem 0;
+      margin: 0;
       padding: 0.6rem 1rem;
       background-color: #0c181c;
       border-radius: 0.4rem;
@@ -237,9 +237,14 @@ header {
     }
   }
 
-  @media (max-width: 780px) {
+  @media (max-width: 820px) {
     max-width: 75vw;
     margin-left: calc((75vw) / -2);
+  }
+
+  @media (max-width: 500px) {
+    max-width: 90vw;
+    margin-left: calc((90vw) / -2);
   }
 
   &.open {
