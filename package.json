@@ -9,8 +9,12 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.2",
     "sass": "^1.63.6",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
+  },
+  "dependencies": {
+    "cypress": "^12.17.0"
   }
 }
