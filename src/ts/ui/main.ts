@@ -52,6 +52,8 @@ function createStatBar(stat: string, pokemon: Pokemon, modal: HTMLElement): void
 function createModal(pokemon: Pokemon): void {
   const modalContainer = document.createElement("div");
   const modalContent = document.createElement("div");
+  const closeButton = document.createElement("button");
+  const closeImage = document.createElement("img");
   const name = document.createElement("h2");
   const type = document.createElement("p");
 
@@ -60,10 +62,14 @@ function createModal(pokemon: Pokemon): void {
   type.style.background = typeColors[pokemon.type];
   modalContainer.setAttribute("class", "modal-container open");
   modalContent.setAttribute("class", "modal-content");
+  closeButton.setAttribute("class", "close-btn");
+  closeImage.setAttribute("class", "close-img");
+  closeImage.setAttribute("src", "assets/images/icon-close-menu.svg");
   name.setAttribute("class", "pokemon-name");
   type.setAttribute("class", "pokemon-type");
 
-  modalContent.append(name, type);
+  closeButton.appendChild(closeImage);
+  modalContent.append(closeButton, name, type);
   modalContainer.appendChild(modalContent);
   body.appendChild(modalContainer);
 
@@ -73,6 +79,11 @@ function createModal(pokemon: Pokemon): void {
   createStatBar("speed", pokemon, modalContent);
   createStatBar("specialAttack", pokemon, modalContent);
   createStatBar("specialDefense", pokemon, modalContent);
+
+  closeButton.onclick = () => {
+    modalContainer.classList.add("close");
+    hideElement(overlay);
+  };
 
   overlay.onclick = () => {
     modalContainer.classList.add("close");
