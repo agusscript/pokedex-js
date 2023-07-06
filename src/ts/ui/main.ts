@@ -1,18 +1,23 @@
-// import { typeColors } from "./type-colors.ts";
+import { typeColors } from "./type-colors.ts";
 
 const pageNumberText = <HTMLSpanElement>document.querySelector(".page-number");
 export const loader = <HTMLDivElement>document.querySelector(".loader");
 const header = <HTMLElement>document.querySelector("header");
+const body = <HTMLElement>document.querySelector("body");
 const main = <HTMLElement>document.querySelector("main");
 const footer = <HTMLElement>document.querySelector("footer");
+const overlay = <HTMLDivElement>document.querySelector(".overlay");
 
-// type Pokemon = {
-//   type: number;
-//   hp: number;
-//   attack: number;
-//   defense: number;
-//   speed: number;
-// };
+type Pokemon = {
+  name: string;
+  type: string;
+  hp: number;
+  attack: number;
+  defense: number;
+  speed: number;
+  specialAttack: number;
+  specialDefense: number;
+};
 
 type PokemonList = {
   name: string;
@@ -21,16 +26,18 @@ type PokemonList = {
   image: string;
 };
 
-/* function createStatBar(stat, pokemon, backCard) {
+function createStatBar(stat: string, pokemon: Pokemon, modal: HTMLElement): void {
   const statContainer = document.createElement("div");
   const statBar = document.createElement("div");
   const selectedStat = document.createElement("div");
   const textStatContainer = document.createElement("p");
   const numberStat = document.createElement("span");
 
-  selectedStat.style.width = `${pokemon[stat]}%`;
+  const pokemonStat = pokemon[stat as keyof Pokemon];
+
+  selectedStat.style.width = `${pokemonStat}%`;
   textStatContainer.textContent = stat;
-  numberStat.textContent = pokemon[stat];
+  numberStat.textContent = pokemonStat.toString();
 
   statContainer.setAttribute("class", "stat-container");
   statBar.setAttribute("class", "stat-bar");
@@ -39,26 +46,44 @@ type PokemonList = {
   textStatContainer.appendChild(numberStat);
   statBar.appendChild(selectedStat);
   statContainer.append(textStatContainer, statBar);
-  backCard.append(statContainer);
-} */
+  modal.append(statContainer);
+}
 
-/* function createBackCard(pokemonCard, pokemon) {
-  const backCard = document.createElement("div");
-  const pokemonTypeText = document.createElement("p");
+function createModal(pokemon: Pokemon): void {
+  const modalContainer = document.createElement("div");
+  const modalContent = document.createElement("div");
+  const name = document.createElement("h2");
+  const type = document.createElement("p");
 
-  pokemonTypeText.textContent = pokemon.type;
-  pokemonTypeText.style.background = typeColors[pokemon.type];
-  backCard.setAttribute("class", "back-card");
-  pokemonTypeText.setAttribute("class", "pokemon-type");
-  backCard.appendChild(pokemonTypeText);
+  name.textContent = pokemon.name;
+  type.textContent = pokemon.type;
+  type.style.background = typeColors[pokemon.type];
+  modalContainer.setAttribute("class", "modal-container open");
+  modalContent.setAttribute("class", "modal-content");
+  name.setAttribute("class", "pokemon-name");
+  type.setAttribute("class", "pokemon-type");
 
-  createStatBar("hp", pokemon, backCard);
-  createStatBar("attack", pokemon, backCard);
-  createStatBar("defense", pokemon, backCard);
-  createStatBar("speed", pokemon, backCard);
+  modalContent.append(name, type);
+  modalContainer.appendChild(modalContent);
+  body.appendChild(modalContainer);
 
-  pokemonCard.appendChild(backCard);
-} */
+  createStatBar("hp", pokemon, modalContent);
+  createStatBar("attack", pokemon, modalContent);
+  createStatBar("defense", pokemon, modalContent);
+  createStatBar("speed", pokemon, modalContent);
+  createStatBar("specialAttack", pokemon, modalContent);
+  createStatBar("specialDefense", pokemon, modalContent);
+
+  overlay.onclick = () => {
+    modalContainer.classList.add("close");
+    hideElement(overlay);
+  };
+}
+
+export function renderModal(pokemon: Pokemon): void {
+  showElement(overlay);
+  createModal(pokemon);
+}
 
 export function renderCard(
   pokemonList: PokemonList,
@@ -70,26 +95,12 @@ export function renderCard(
 
   const cardsContainer = <HTMLDivElement>document.querySelector(".cards-container");
   const pokemonCard = <HTMLDivElement>document.createElement("div");
-
-  pokemonCard.classList.add("pokemon-card");
-  pokemonCard.setAttribute("data-name", pokemonList.name[index]);
-
-  createFrontCard(pokemonCard, index, pokemonList);
-
-  cardsContainer.appendChild(pokemonCard);
-
-  callBackListener(pokemonCard);
-}
-
-function createFrontCard(
-  pokemonCard: HTMLDivElement,
-  index: number,
-  pokemonList: PokemonList
-): void {
   const imageContainer = document.createElement("figure");
   const image = document.createElement("img");
   const name = document.createElement("figcaption");
 
+  pokemonCard.classList.add("pokemon-card");
+  pokemonCard.setAttribute("data-name", pokemonList.name[index]);
   name.textContent = pokemonList.name[index];
   image.setAttribute("src", pokemonList.image[index]);
   image.setAttribute("class", "pokemon-img");
@@ -98,6 +109,10 @@ function createFrontCard(
 
   imageContainer.append(image, name);
   pokemonCard.appendChild(imageContainer);
+
+  cardsContainer.appendChild(pokemonCard);
+
+  callBackListener(pokemonCard);
 }
 
 export function showElement(element: HTMLElement): void {

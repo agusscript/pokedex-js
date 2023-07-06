@@ -1,4 +1,4 @@
-export const typeColors = {
+export const typeColors: any = {
   grass: "linear-gradient(to right, #6fce40, #103000)",
   steel: "linear-gradient(to right, #66c0e0, #002e3f)",
   water: "linear-gradient(to right, #318bff, #00224e)",

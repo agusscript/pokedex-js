@@ -7,6 +7,7 @@ import {
   hideBodyElements,
   showElement,
   loader,
+  renderModal,
 } from "./ui/main.ts";
 
 const limit = 16;
@@ -30,7 +31,7 @@ function renderPokemonList(pokemonList: any) {
 export async function displayPokemonInfo(pokemon: string): Promise<void> {
   fetchPokemonInfo(pokemon).then((pokemon) => {
     const mappedPokemon = mapPokemon(pokemon);
-    console.log(mappedPokemon);
+    renderModal(mappedPokemon);
   });
 }
 

@@ -9,10 +9,20 @@ header {
   text-align: center;
 
   h1 {
-    margin: 0.8rem;
+    margin: 0.8rem 0;
     font-size: 4rem;
     color: whitesmoke;
   }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1;
 }
 
 .loader {
@@ -80,6 +90,183 @@ header {
 
   @media (max-width: 700px) {
     padding: 2rem 0.4rem;
+  }
+}
+
+.modal-container {
+  position: fixed;
+  display: table;
+  width: 100%;
+  height: 100%;
+  min-height: 90vh;
+  max-width: 50vw;
+  left: 50%;
+  top: 50%;
+  margin-top: calc((90vh) / -2); // Negative half of height
+  margin-left: calc((50vw) / -2); // Negative half of width
+  border-radius: 0.4rem;
+  z-index: 1;
+
+  @media (max-width: 780px) {
+    max-width: 75vw;
+    margin-left: calc((75vw) / -2);
+  }
+
+  &.open {
+    transform: scale(1);
+    .modal-content {
+      opacity: 0;
+      animation: scaleUp 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+
+    &.close {
+      animation: quickScaleDown 0s 0.7s linear forwards;
+      .modal-content {
+        animation: scaleDown 0.7s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+      }
+    }
+  }
+
+  .modal-content {
+    box-sizing: border-box;
+    padding: 1rem;
+    padding-bottom: 2rem;
+    background: #317a71;
+    border-radius: 3px;
+    font-weight: 300;
+    min-height: inherit;
+    max-width: inherit;
+    border-radius: inherit;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .pokemon-name {
+      margin: 0.8rem 0;
+      font-size: 1.6rem;
+      font-weight: bold;
+      text-transform: capitalize;
+      letter-spacing: 0.1rem;
+      color: #0c181c;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    .pokemon-type {
+      font-size: 1.1rem;
+      margin: 0 0 1rem 0;
+      padding: 0.6rem 1rem;
+      background-color: #0c181c;
+      border-radius: 0.4rem;
+      letter-spacing: 0.1rem;
+      color: whitesmoke;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    .stat-container {
+      margin: 0.1rem;
+      text-align: start;
+      width: 90%;
+
+      P {
+        margin: 0.8rem 0;
+        color: #0c181c;
+        letter-spacing: 0.1rem;
+        font-weight: 800;
+        text-transform: capitalize;
+      }
+
+      span {
+        margin: 0 0.4rem;
+        font-weight: 700;
+        padding: 0.1rem 0.3rem;
+        color: whitesmoke;
+        background-color: #0c181c;
+        letter-spacing: 0.1rem;
+      }
+
+      .stat-bar {
+        width: 100%;
+        height: 10px;
+        background-color: rgb(220, 220, 220);
+        border-radius: 1rem;
+
+        div {
+          height: 100%;
+          border-radius: inherit;
+        }
+
+        .hp-bar,
+        .attack-bar,
+        .defense-bar,
+        .speed-bar,
+        .specialAttack-bar,
+        .specialDefense-bar {
+          max-width: 100%;
+        }
+
+        .hp-bar {
+          background-color: #47af22;
+        }
+
+        .attack-bar {
+          background-color: #f50400;
+        }
+
+        .defense-bar {
+          background-color: #00b2ff;
+        }
+
+        .speed-bar {
+          background-color: #d3d316;
+        }
+
+        .specialAttack-bar {
+          background-color: #f59300;
+        }
+
+        .specialDefense-bar {
+          background-color: #b700ff;
+        }
+      }
+    }
+  }
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(0.8) translateY(1000px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes quickScaleDown {
+  0% {
+    transform: scale(1);
+  }
+  99.9% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes scaleDown {
+  0% {
+    transform: scale(1) translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.8) translateY(1000px);
+    opacity: 0;
   }
 }
 

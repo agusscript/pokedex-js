@@ -3,14 +3,24 @@ import { PokemonList } from "../entities/pokemonList.ts";
 
 export function mapPokemon(apiData: any): Pokemon {
   const name: string = apiData.name;
-  const image: string = apiData.sprites.other["official-artwork"].front_default;
   const type: string = apiData.types[0].type.name;
   const hp: number = apiData.stats[0].base_stat;
   const attack: number = apiData.stats[1].base_stat;
   const defense: number = apiData.stats[2].base_stat;
   const speed: number = apiData.stats[5].base_stat;
+  const specialAttack: number = apiData.stats[3].base_stat;
+  const specialDefense: number = apiData.stats[4].base_stat;
 
-  const pokemon = new Pokemon(name, image, type, hp, attack, defense, speed);
+  const pokemon = new Pokemon(
+    name,
+    type,
+    hp,
+    attack,
+    defense,
+    speed,
+    specialAttack,
+    specialDefense
+  );
 
   return pokemon;
 }
