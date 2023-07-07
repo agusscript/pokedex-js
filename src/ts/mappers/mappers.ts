@@ -1,7 +1,8 @@
 import { Pokemon } from "../entities/pokemon.ts";
 import { PokemonList } from "../entities/pokemonList.ts";
+import { PokemonInfo, ListPokemons, Result } from "./types.ts";
 
-export function mapPokemon(apiData: any): Pokemon {
+export function mapPokemon(apiData: PokemonInfo): Pokemon {
   const name: string = apiData.name;
   const type: string = apiData.types[0].type.name;
   const hp: number = apiData.stats[0].base_stat;
@@ -25,9 +26,9 @@ export function mapPokemon(apiData: any): Pokemon {
   return pokemon;
 }
 
-export function mapPokemonList(apiData: any): PokemonList {
-  const name = apiData.results.map((pokemon: any) => pokemon.name);
-  const url = apiData.results.map((pokemon: any) => pokemon.url);
+export function mapPokemonList(apiData: ListPokemons): PokemonList {
+  const name = apiData.results.map((pokemon: Result) => pokemon.name);
+  const url = apiData.results.map((pokemon: Result) => pokemon.url);
   const id = url.map((url: string) => extractId(url));
   const image = id.map((id: string) => {
     const pokemonImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;

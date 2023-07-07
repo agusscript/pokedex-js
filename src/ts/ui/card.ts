@@ -1,11 +1,5 @@
 import { showBodyElements, hideElement, loader } from "./main";
-
-type PokemonList = {
-  name: string;
-  url: string;
-  id: number;
-  image: string;
-};
+import { PokemonList } from "../entities/pokemonList";
 
 export function renderCard(
   pokemonList: PokemonList,

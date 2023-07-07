@@ -1,16 +1,6 @@
 import { overlay, body, hideElement, showElement } from "./main";
+import { Pokemon } from "../entities/pokemon";
 import { typeColors } from "./type-colors";
-
-type Pokemon = {
-  name: string;
-  type: string;
-  hp: number;
-  attack: number;
-  defense: number;
-  speed: number;
-  specialAttack: number;
-  specialDefense: number;
-};
 
 function createStatBar(stat: string, pokemon: Pokemon, modal: HTMLElement): void {
   const statContainer = document.createElement("div");

@@ -1,5 +1,6 @@
 import { showPageNumber, hideBodyElements, showElement, loader } from "./ui/main.ts";
 import { renderCard, removePokemonCards } from "./ui/card.ts";
+import { PokemonList } from "./entities/pokemonList.ts";
 import { renderModal } from "./ui/modal.ts";
 import { fetchPokemonList, fetchPokemonInfo } from "./api/pokeApi.ts";
 import { mapPokemon, mapPokemonList } from "./mappers/mappers.ts";
@@ -18,7 +19,7 @@ async function displayPokemonList(): Promise<void> {
   }
 }
 
-function renderPokemonList(pokemonList: any) {
+function renderPokemonList(pokemonList: PokemonList): void {
   const listLength: number = pokemonList.name.length;
   for (let i = 0; i < listLength; i++) {
     renderCard(pokemonList, i, addCardClickListener);
@@ -35,7 +36,7 @@ export async function displayPokemonInfo(pokemon: string): Promise<void> {
   }
 }
 
-export function addCardClickListener(cardElement: HTMLDivElement) {
+export function addCardClickListener(cardElement: HTMLDivElement): void {
   const handleClick = () => {
     const pokemonName: string = cardElement.dataset.name!;
     displayPokemonInfo(pokemonName);
@@ -71,7 +72,7 @@ function manageNextButton(): void {
   };
 }
 
-export function initialize() {
+export function initialize(): void {
   showElement(loader);
   displayPokemonList();
   manageNextButton();
