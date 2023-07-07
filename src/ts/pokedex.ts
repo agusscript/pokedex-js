@@ -1,24 +1,21 @@
+import { showPageNumber, hideBodyElements, showElement, loader } from "./ui/main.ts";
+import { renderCard, removePokemonCards } from "./ui/card.ts";
+import { renderModal } from "./ui/modal.ts";
 import { fetchPokemonList, fetchPokemonInfo } from "./api/pokeApi.ts";
 import { mapPokemon, mapPokemonList } from "./mappers/mappers.ts";
-import {
-  renderCard,
-  removePokemonCards,
-  showPageNumber,
-  hideBodyElements,
-  showElement,
-  loader,
-  renderModal,
-} from "./ui/main.ts";
 
 const limit = 16;
 let offset = 0;
 let pageNumber = 1;
 
 async function displayPokemonList(): Promise<void> {
-  const pokemonList = await fetchPokemonList(offset, limit);
-
-  const mappedPokemon = mapPokemonList(pokemonList);
-  renderPokemonList(mappedPokemon);
+  try {
+    const pokemonList = await fetchPokemonList(offset, limit);
+    const mappedPokemon = mapPokemonList(pokemonList);
+    renderPokemonList(mappedPokemon);
+  } catch (error) {
+    console.error("Failed to display Pokemon list:", error);
+  }
 }
 
 function renderPokemonList(pokemonList: any) {
@@ -29,10 +26,13 @@ function renderPokemonList(pokemonList: any) {
 }
 
 export async function displayPokemonInfo(pokemon: string): Promise<void> {
-  fetchPokemonInfo(pokemon).then((pokemon) => {
-    const mappedPokemon = mapPokemon(pokemon);
+  try {
+    const pokemonData = await fetchPokemonInfo(pokemon);
+    const mappedPokemon = mapPokemon(pokemonData);
     renderModal(mappedPokemon);
-  });
+  } catch (error) {
+    console.error("Failed to display Pokemon info:", error);
+  }
 }
 
 export function addCardClickListener(cardElement: HTMLDivElement) {
