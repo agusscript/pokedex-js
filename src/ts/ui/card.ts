@@ -1,6 +1,8 @@
 import { showBodyElements, hideElement, loader } from "./main";
 import { PokemonList } from "../entities/pokemonList";
 
+export const cardsContainer = <HTMLDivElement>document.querySelector(".cards-container");
+
 export function renderCard(
   pokemonList: PokemonList,
   index: number,
@@ -31,9 +33,8 @@ export function renderCard(
   callBackListener(pokemonCard);
 }
 
-export function removePokemonCards(): void {
-  const pokemonCards = <HTMLDivElement>document.querySelector(".cards-container");
-  while (pokemonCards.firstChild) {
-    pokemonCards.removeChild(pokemonCards.firstChild);
+export function removePokemonCards(container: HTMLDivElement): void {
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
   }
 }

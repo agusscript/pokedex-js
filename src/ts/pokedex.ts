@@ -1,7 +1,7 @@
 import { PokemonList } from "./entities/pokemonList.ts";
 import { fetchPokemonList, fetchPokemonInfo } from "./api/pokeApi.ts";
 import { mapPokemon, mapPokemonList } from "./mappers/mappers.ts";
-import { renderCard, removePokemonCards } from "./ui/card.ts";
+import { cardsContainer, renderCard, removePokemonCards } from "./ui/card.ts";
 import { renderModal } from "./ui/modal.ts";
 import {
   setPageNumber,
@@ -55,7 +55,7 @@ function managePrevButton(): void {
   prevButton.onclick = () => {
     if (offset !== 0) {
       showElement(loader);
-      removePokemonCards();
+      removePokemonCards(cardsContainer);
       offset -= 16;
       pageNumber -= 1;
       hideBodyElements();
@@ -69,7 +69,7 @@ function manageNextButton(): void {
   const nextButton = <HTMLButtonElement>document.querySelector(".next");
   nextButton.onclick = () => {
     showElement(loader);
-    removePokemonCards();
+    removePokemonCards(cardsContainer);
     offset += 16;
     pageNumber += 1;
     hideBodyElements();
