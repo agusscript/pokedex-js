@@ -1,9 +1,15 @@
-import { showPageNumber, hideBodyElements, showElement, loader } from "./ui/main.ts";
-import { renderCard, removePokemonCards } from "./ui/card.ts";
 import { PokemonList } from "./entities/pokemonList.ts";
-import { renderModal } from "./ui/modal.ts";
 import { fetchPokemonList, fetchPokemonInfo } from "./api/pokeApi.ts";
 import { mapPokemon, mapPokemonList } from "./mappers/mappers.ts";
+import { renderCard, removePokemonCards } from "./ui/card.ts";
+import { renderModal } from "./ui/modal.ts";
+import {
+  setPageNumber,
+  pageNumberText,
+  hideBodyElements,
+  showElement,
+  loader,
+} from "./ui/main.ts";
 
 const limit = 16;
 let offset = 0;
@@ -54,7 +60,7 @@ function managePrevButton(): void {
       pageNumber -= 1;
       hideBodyElements();
       displayPokemonList();
-      showPageNumber(pageNumber);
+      setPageNumber(pageNumberText, pageNumber);
     }
   };
 }
@@ -68,7 +74,7 @@ function manageNextButton(): void {
     pageNumber += 1;
     hideBodyElements();
     displayPokemonList();
-    showPageNumber(pageNumber);
+    setPageNumber(pageNumberText, pageNumber);
   };
 }
 
@@ -77,5 +83,5 @@ export function initialize(): void {
   displayPokemonList();
   manageNextButton();
   managePrevButton();
-  showPageNumber(pageNumber);
+  setPageNumber(pageNumberText, pageNumber);
 }

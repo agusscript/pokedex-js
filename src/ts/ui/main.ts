@@ -26,11 +26,12 @@ function showBodyElements(): void {
   showElement(footer);
 }
 
-function showPageNumber(number: number): void {
-  pageNumberText.textContent = number.toString();
+function setPageNumber(element: HTMLElement, number: number): void {
+  element.textContent = number.toString();
 }
 
 export {
+  pageNumberText,
   loader,
   body,
   overlay,
@@ -38,5 +39,5 @@ export {
   hideElement,
   hideBodyElements,
   showBodyElements,
-  showPageNumber,
+  setPageNumber,
 };
